@@ -487,8 +487,8 @@ Los siguientes pasos son comunes para realizar los 2 tipos de pruebas:
 4. Instalar las dependencias del proyecto -> ```composer install```
     - Si se usa Windows aqui hay que entrar por wsl a la maquina virtualizada de Ubuntu (por ejemplo) y acceder a la ruta del proyecto (normalmente por /mnt/c/...) para proseguir con los siguientes pasos.
 5. Dar permiso de ejecución a Sail -> ```chmod +x ./vendor/bin/sail```
-6. Instalar las claves del proyecto -> ```./vendor/bin/sail artisan key:generate```
-7. Iniciar entorno sail -> ```./vendor/bin/sail up```
+6. Iniciar entorno sail -> ```./vendor/bin/sail up```
+7. Instalar las claves del proyecto -> ```./vendor/bin/sail artisan key:generate```
 8. Ejecutar migraciones -> ```./vendor/bin/sail artisan migrate```
 9. Ejecutar seeders para añadir datos a la base de datos -> ```./vendor/bin/sail artisan db:seed```
 
