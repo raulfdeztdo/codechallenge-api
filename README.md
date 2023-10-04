@@ -472,8 +472,10 @@ Vamos a realizar dos tipos de pruebas unas mediante Insomnia y otra mediante pru
 ### Requisitos
 
 - Docker y Docker Compose: Debes tener Docker y Docker Compose instalados en tu máquina. Si aún no los tienes, puedes descargarlos desde el sitio oficial de Docker.
+    - Si se quiere probar desde Windows se tiene que tener instalado wsl2 y que este activada la relación con Docker desde los ajustes de Docker
 
 - Git: Necesitarás Git para clonar el repositorio.
+- Composer: Es necesario para instalar las dependencias del proyecto
 
 ### Pasos comunes
 
@@ -481,22 +483,25 @@ Los siguientes pasos son comunes para realizar los 2 tipos de pruebas:
 
 1. Clonar repositorio -> ```git clone https://github.com/raulfdeztdo/codechallenge-api.git```
 2. Posicionarte en el directorio del repositorio -> ```cd codechallenge-api```
-3. Dar permiso de ejecución a Sail -> ```chmod +x vendor/bin/sail```
-4. Iniciar entorno sail -> ```./vendor/bin/sail up```
-5. Instalar dependencias del proyecto -> ```./vendor/bin/sail composer install```
-4. Ejecutar migraciones -> ```./vendor/bin/sail artisan migrate```
-5. Ejecutar seeders para añadir datos a la base de datos -> ```./vendor/bin/sail artisan db:seed```
+3. Copiar las variables de entorno -> ```cp .env.example .env```
+4. Instalar las dependencias del proyecto -> ```composer install```
+    - Si se usa Windows aqui hay que entrar por wsl a la maquina virtualizada de Ubuntu (por ejemplo) y acceder a la ruta del proyecto (normalmente por /mnt/c/...) para proseguir con los siguientes pasos.
+5. Dar permiso de ejecución a Sail -> ```chmod +x ./vendor/bin/sail```
+6. Instalar las claves del proyecto -> ```./vendor/bin/sail artisan key:generate```
+7. Iniciar entorno sail -> ```./vendor/bin/sail up```
+8. Ejecutar migraciones -> ```./vendor/bin/sail artisan migrate```
+9. Ejecutar seeders para añadir datos a la base de datos -> ```./vendor/bin/sail artisan db:seed```
 
 ### Insomnia
 
-Para realizar pruebas mediante el software tenemos que tener el proyecto levantado, se ha utilizado sail para levantar el entorno mediante docker, si se utiliza windows es necesario tener instalado WSL2, en Linux y Mac no hace falta tener WSL2. Si no se ha configurado un atajo para sail debes posicionarte en la terminar en la carpeta del proyecto y utilizar "./vendor/bin/sail up" para levantar el entorno.
+Para realizar las pruebas mediante el software Insomnia es necesario tener el proyecto levantado como se ha explicado en los pasos anteriores, y si no ha habido ningún error procederemos a continuar con los pasos siguientes para realizar las peticiones a nuestra API REST.
 
 
 1. Abrir Insomnia y realizar una peticion tipo POST a http://localhost/api/login con los siguientes datos
     - Key: "email", Value: "test@email.com"
     - Key: "password", Value: "PruebaCodeChallenge"
 2. El paso anterior devolverá un token que será necesario para realizar las pruebas
-3. Por ejemplo para realizar una petición list que devolverá un listado de los leads se necesita hacer una peticion a la url http://localhost/api/leads/list y como metodo de autentificación se elegirá "Bearer Token" en el que se debe poner el token obtenido en el paso 1
+3. Por ejemplo para realizar una petición list que devolverá un listado de los leads se necesita hacer una peticion GET a la url http://localhost/api/leads/list y como metodo de autentificación se elegirá "Bearer Token" en el que se debe poner el token obtenido en el paso 1
 
 Ejemplo de obtención de datos de una petición list y una petición store:
 
@@ -511,6 +516,12 @@ Para realizar las pruebas unitarias hemos creado un fichero test mediante el com
 
 Ejecutar las pruebas ```./vendor/bin/sail artisan test --filter LeadControllerTest```
 
-Aqui se muestra un ejemplo de la resolución de las pruebas:
+Aqui se muestra un ejemplo de la resolución de las pruebas, en la imagen 1 se realizan las pruebas desde un sistema macOS donde se ha desarrollado el proyecto y en la imagen 2 se muestra la salida de los test desde un sistema con Windows 11 donde se ha levantado el entorno mediante Docker y wsl:
 
-![Resultado pruebas unitarias](https://i.ibb.co/M2F2Xcp/image.png)
+#### macOS
+
+![Resultado pruebas unitarias - macOS](https://i.ibb.co/M2F2Xcp/image.png)
+
+#### Windows
+
+![Resultado pruebas unitarias - Windows 11](https://i.ibb.co/rdGQ7jb/image.png)
