@@ -490,6 +490,15 @@ Los siguientes pasos son comunes para realizar los 2 tipos de pruebas:
 6. Iniciar entorno sail -> ```./vendor/bin/sail up```
 7. Instalar las claves del proyecto -> ```./vendor/bin/sail artisan key:generate```
 8. Ejecutar migraciones -> ```./vendor/bin/sail artisan migrate```
+    - Si al realizar las migraciones ocurre algun problema, habría que entrar a mysql como root y dar los privilegios necesarios al ususario "sail":
+        - ```mysql -h mysql -u root -ppassword```
+        - ```./vendor/bin/sail bash```
+        - ```mysql -h mysql -u root -ppassword```
+        - ```GRANT ALL ON codechallenge_api.* TO 'sail'@'%';```
+        - ```FLUSH PRIVILEGES;```
+        - ```./vendor/bin/sail down```
+        - ```./vendor/bin/sail up -d```
+        - ```./vendor/bin/sail artisan migrate```
 9. Ejecutar seeders para añadir datos a la base de datos -> ```./vendor/bin/sail artisan db:seed```
 
 ### Insomnia
