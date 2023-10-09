@@ -1,6 +1,4 @@
-<p align="center">
-    ![Cabecera iAhorro](https://asset.brandfetch.io/idBPU3UFya/idx5evPLCW.jpeg)
-</p>
+![Cabecera iAhorro](https://asset.brandfetch.io/idBPU3UFya/idx5evPLCW.jpeg)
 
 # Prueba técnica
 
