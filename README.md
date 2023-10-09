@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="[https://media.licdn.com/dms/image/C4D1BAQGHrcRmbivWoQ/company-background_10000/0/1595936903607?e=1696690800&v=beta&t=LyW64PwCMCxoSZ8JFfrWgZu6zjfZrZLaDRdZbFC9KZs](https://asset.brandfetch.io/idBPU3UFya/idx5evPLCW.jpeg)" alt="iAhorro Cabecera">
+    ![Cabecera iAhorro](https://asset.brandfetch.io/idBPU3UFya/idx5evPLCW.jpeg)
 </p>
 
 # Prueba técnica
